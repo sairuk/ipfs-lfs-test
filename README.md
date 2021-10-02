@@ -33,9 +33,9 @@ $ git config --add lfs.customtransfer.ipfs.path git-lfs-ipfs-cli
 $ git config --add lfs.customtransfer.ipfs.args transfer
 $ git config --add lfs.customtransfer.ipfs.concurrent true
 $ git config --add lfs.customtransfer.ipfs.direction both
-$ git config --add lfs.extension.ipfs.clean git-lfs-ipfs-cli clean %f
-$ git config --add lfs.extension.ipfs.smudge git-lfs-ipfs-cli smudge %f
-$ git config --add lfs.extension.ipfs.smudge git-lfs-ipfs-cli priority 0
+$ git config --add lfs.extension.ipfs.clean "git-lfs-ipfs-cli clean %f"
+$ git config --add lfs.extension.ipfs.smudge "git-lfs-ipfs-cli smudge %f"
+$ git config --add lfs.extension.ipfs.priority 0
 
 ```
 
