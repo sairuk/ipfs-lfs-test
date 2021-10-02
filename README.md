@@ -7,35 +7,42 @@ install ipfs and start the daemon see doco
 
 ## Cloning this repo
 this requires your ``` ~/.gitconfig ``` to be updated to include this lfs
-solution as an option before you will be able to pull the data, see Configure
-but add the --global switch
+solution as an option before you will be able to pull the data, see the section
+Configure (user)
 
 ## Build
 
 ```
-# apt-get install cargo
-$ git clone https://github.com/sameer/git-lfs-ipfs
-$ cd git-lfs-ipfs/git-lfs-ipfs-cli
-$ cargo build --release
+apt-get install cargo
+git clone https://github.com/sameer/git-lfs-ipfs
+cd git-lfs-ipfs/git-lfs-ipfs-cli
+cargo build --release
 ```
 ## Install
 ```
-# cp ../target/release/git-lfs-ipfs-cli /usr/local/bin/
+cp ../target/release/git-lfs-ipfs-cli /usr/local/bin/
+git lfs install
 
 ```
 
-## Configure
+## Configure (user)
 ```
-$ git lfs install
-$ cd <git-repo>
-$ git config --add lfs.standalonetransferagent ipfs
-$ git config --add lfs.customtransfer.ipfs.path git-lfs-ipfs-cli
-$ git config --add lfs.customtransfer.ipfs.args transfer
-$ git config --add lfs.customtransfer.ipfs.concurrent true
-$ git config --add lfs.customtransfer.ipfs.direction both
-$ git config --add lfs.extension.ipfs.clean "git-lfs-ipfs-cli clean %f"
-$ git config --add lfs.extension.ipfs.smudge "git-lfs-ipfs-cli smudge %f"
-$ git config --add lfs.extension.ipfs.priority 0
+git config --add lfs.standalonetransferagent ipfs
+git config --global --add lfs.customtransfer.ipfs.path git-lfs-ipfs-cli
+git config --global --add lfs.customtransfer.ipfs.args transfer
+git config --global --add lfs.customtransfer.ipfs.concurrent true
+git config --global --add lfs.customtransfer.ipfs.direction both
+git config --global --add lfs.extension.ipfs.clean "git-lfs-ipfs-cli clean %f"
+git config --global --add lfs.extension.ipfs.smudge "git-lfs-ipfs-cli smudge %f"
+git config --global --add lfs.extension.ipfs.priority 0
+
+```
+
+## Configure (repo)
+```
+cd <gitrepo>
+git config filter.lfs.clean "git-lfs-ipfs-cli clean %f"
+git config filter.lfs.smudge "git-lfs-ipfs-cli smudge %f"
 
 ```
 
