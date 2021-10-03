@@ -46,10 +46,14 @@ git config filter.lfs.smudge "git-lfs-ipfs-cli smudge %f"
 
 ```
 
+## Testing
+successfully cloning this repo will test your setup
+
 ## Usage
 ```
 $ cd <git-repo>
 $ git lfs track *.pdf
+$ git add .gitattributes
 
 ```
 
