@@ -37,6 +37,16 @@ git config --global --add lfs.extension.ipfs.smudge "git-lfs-ipfs-cli smudge %f"
 git config --global --add lfs.extension.ipfs.priority 0
 
 ```
+if you haven't already configured a default filter for lfs (maybe through git 
+lfs) add one manually or your ipfs endpoints will not resolve
+
+```
+git config --global --add filter.lfs.clean "git-lfs-ipfs-cli clean %f"
+git config --global --add filter.lfs.smudge "git-lfs-ipfs-cli smudge %f"
+git config --global --add filter.lfs.process filter-process
+git config --global --add filter.lfs.required true
+
+```
 
 ## Configure (repo)
 ```
