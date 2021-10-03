@@ -3,7 +3,8 @@ utilising https://github.com/sameer/git-lfs-ipfs we will test ipfs storage to
 replace the limited github lfs storage
 
 ## Install ipfs
-install ipfs and start the daemon see doco
+- install ipfs and start the daemon [see doco](https://docs.ipfs.io/)
+- port forward 4001/tcp [see doco](https://docs.ipfs.io/how-to/nat-configuration/)
 
 ## Cloning this repo
 this requires your ``` ~/.gitconfig ``` to be updated to include this lfs
@@ -11,13 +12,13 @@ solution as an option before you will be able to pull the data, see the section
 Configure (user)
 
 ## Build
-
 ```
 apt-get install cargo
 git clone https://github.com/sameer/git-lfs-ipfs
 cd git-lfs-ipfs/git-lfs-ipfs-cli
 cargo build --release
 ```
+
 ## Install
 ```
 cp ../target/release/git-lfs-ipfs-cli /usr/local/bin/
