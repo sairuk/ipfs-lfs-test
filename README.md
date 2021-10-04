@@ -2,14 +2,15 @@
 utilising https://github.com/sameer/git-lfs-ipfs we will test ipfs storage to
 replace the limited github lfs storage
 
-## Install ipfs
+## IPFS
 - install ipfs and start the daemon [see doco](https://docs.ipfs.io/)
 - port forward 4001/tcp [see doco](https://docs.ipfs.io/how-to/nat-configuration/)
 
-## Cloning this repo
+## Cloning
 this requires your ``` ~/.gitconfig ``` to be updated to include this lfs
 solution as an option before you will be able to pull the data, see the section
-Configure (user)
+Configure (user) and Configure (repo) as you'll need to check the repo after 
+initial cloning to ensure ipfs support is part of the lfs environment
 
 ## Build
 ```
@@ -21,17 +22,20 @@ cargo build --release
 
 ## Install
 git-lfs [see doco](https://git-lfs.github.com/)
+```
+git lfs install
+```
+^required for unsupported ipfs-cli library function filter-process
 
 git-lfs-ipfs-cli
 ```
 cp ../target/release/git-lfs-ipfs-cli /usr/local/bin/
-git lfs install
 
 ```
 
 ## Configure (user)
 ```
-git config --add lfs.standalonetransferagent ipfs
+git config --global --add lfs.standalonetransferagent ipfs
 git config --global --add lfs.customtransfer.ipfs.path git-lfs-ipfs-cli
 git config --global --add lfs.customtransfer.ipfs.args transfer
 git config --global --add lfs.customtransfer.ipfs.concurrent true
@@ -41,18 +45,36 @@ git config --global --add lfs.extension.ipfs.smudge "git-lfs-ipfs-cli smudge %f"
 git config --global --add lfs.extension.ipfs.priority 0
 
 ```
+
 if you haven't already configured a default filter for lfs (maybe through git 
 lfs) add one manually or your ipfs endpoints will not resolve
 
 ```
-git config --global --add filter.lfs.clean "git-lfs-ipfs-cli clean %f"
-git config --global --add filter.lfs.smudge "git-lfs-ipfs-cli smudge %f"
-git config --global --add filter.lfs.process filter-process
+git config --global --add filter.lfs.clean "git-lfs clean %f"
+git config --global --add filter.lfs.smudge "git-lfs smudge %f"
+git config --global --add filter.lfs.process "git-lfs filter-process"
 git config --global --add filter.lfs.required true
 
 ```
 
+alternatively if you exclusively want to use ipfs for lfs, you will now no
+longer need to configure each repo after cloning to use ipfs
+```
+git config --global --add filter.lfs.clean "git-lfs-ipfs-cli clean %f"
+git config --global --add filter.lfs.smudge "git-lfs-ipfs-cli smudge %f"
+```
+
+
 ## Configure (repo)
+check you current lfs env 
+```
+cd <gitrepo>
+git lfs env
+
+```
+
+tell you repo to use ipfs for lfs
+
 ```
 cd <gitrepo>
 git config filter.lfs.clean "git-lfs-ipfs-cli clean %f"
