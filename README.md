@@ -50,8 +50,8 @@ if you haven't already configured a default filter for lfs (maybe through git
 lfs) add one manually or your ipfs endpoints will not resolve
 
 ```
-git config --global --add filter.lfs.clean "git-lfs clean %f"
-git config --global --add filter.lfs.smudge "git-lfs smudge %f"
+git config --global --add filter.lfs.clean "git-lfs clean -- %f"
+git config --global --add filter.lfs.smudge "git-lfs smudge -- %f"
 git config --global --add filter.lfs.process "git-lfs filter-process"
 git config --global --add filter.lfs.required true
 
@@ -63,7 +63,6 @@ longer need to configure each repo after cloning to use ipfs
 git config --global --add filter.lfs.clean "git-lfs-ipfs-cli clean %f"
 git config --global --add filter.lfs.smudge "git-lfs-ipfs-cli smudge %f"
 ```
-
 
 ## Configure (repo)
 check you current lfs env 
