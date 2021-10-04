@@ -20,6 +20,9 @@ cargo build --release
 ```
 
 ## Install
+git-lfs [see doco](https://git-lfs.github.com/)
+
+git-lfs-ipfs-cli
 ```
 cp ../target/release/git-lfs-ipfs-cli /usr/local/bin/
 git lfs install
